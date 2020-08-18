@@ -1,0 +1,548 @@
+@charset "utf-8";
+/* VOGUE PJ 메인 페이지 CSS - main.css */
+
+/*import*/
+@import url(grid_bg.css);
+@import url(grid_set.css);
+@import url(core.css);
+
+html,body{
+    width: 100%;
+}
+body{
+    overflow-x: hidden;
+}
+
+
+/*공통 class*/
+.inbox {
+    max-width: 100%;
+    width: 1200px;
+    margin: 0 auto;
+    /*1200px보다 화면이 크면 1200px유지하면 중앙정렬
+    1200px보다 화면이 작아지면 100%가 적용됨!*/
+    /*outline: 2px dashed red;*/
+}
+
+/*비율박스 class
+.rbx / .rbx::before / .rbxIn*/
+.rbx {
+    position: relative;
+    /*속박스에 대한 부모*/
+    width: 100%;
+}
+
+/*비율박스 가상요소로 패딩밀기*/
+.rbx::before {
+    content: "";
+    display: block;
+    padding-top: 40%;
+}
+
+/*추가비율-컨텐츠박스*/
+.rbx2::before {
+    padding-top: 50%;
+}
+
+/*비율박스의 속박스*/
+.rbxIn {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+/*각 박스별 셋팅*/
+/*******1.상단부분************/
+#top {
+    position: relative;
+    /*부모자격*/
+    height: 100px;
+}
+
+/*햄버거버튼*/
+#ham {
+    position: absolute;
+    top: 50%;
+    left: 3%;
+    transform: translateY(-50%) scaleX(1.5);
+    /*세로중앙이동*/
+
+    width: 75px;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    font: 48px arial;
+    display: none;
+    /*처음에 안보임*/
+}
+
+/*검색버튼*/
+#magni {
+    position: absolute;
+    top: 50%;
+    right: 3%;
+    transform: translateY(-50%);
+    /*세로중앙이동*/
+
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    background-image: url(../images/ico.png);
+    background-repeat: no-repeat;
+    background-position: -200px 0;
+    border: none;
+    display: none;
+    /*처음에 안보임*/
+}
+
+/*햄버거 포커스표시 없앰(크롬)*/
+/*
+    :focus 클릭된 요소에 포커스가 가면~(가상클래스)
+    (비교- :blur 포커스된 요소 외에 클릭될때)
+*/
+#ham:focus,
+#magni:focus {
+    outline: none;
+}
+
+/*모바일 검색박스*/
+.mos {
+    padding: 15px 30px;
+    background-color: #fff;
+    /*outline: 1px solid red;*/
+    display: none;
+    /*처음에 안보임*/
+}
+
+/*검색속박스*/
+.mwrap {
+    position: relative;
+    /*부모자격*/
+    width: 100%;
+    height: 35px;
+    background-color: #000;
+    /*outline: 1px solid blue;*/
+}
+
+/*검색입력창*/
+#search {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    right: 40px;
+    bottom: 3px;
+}
+
+#search input {
+    width: 100%;
+    height: 100%;
+    padding-left: 10px;
+}
+
+/*
+    input박스는 일반 div박스와 다르기때문에
+    겉박스를 하나 만들어서 채우기형식으로 컨트롤함!
+*/
+
+/*검색버튼*/
+#sbtn {
+    position: absolute;
+    top: -4px;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    background-image: url(../images/ico.png);
+    background-repeat: no-repeat;
+    background-position: -240px 0;
+    border: none;
+    /*outline: 1px solid #fff;*/
+}
+
+
+
+/*1-1.로고*/
+#logo {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    /*세로중앙이동*/
+    text-align: center;
+}
+
+/*로고이미지*/
+#logo img {
+    max-width: 100%;
+    /*유연한이미지
+    (이미지크기보다 작아지면 100%)*/
+}
+
+/*큰로고숨기기*/
+.blogo {
+    display: none;
+}
+
+/*1-2.GNB메뉴*/
+.gnb {
+    position: absolute;
+    /*나의부모? #top*/
+    bottom: 20px;
+    right: 10px;
+    /*웹폰트적용*/
+    font-family: 'Play', sans-serif;
+}
+
+.gnb li {
+    padding: 0 13px;
+    font-size: 1.25rem;
+    /*20px을 rem으로표현*/
+    /*상대단위 rem으로 주려면?
+    20px/16px(기본html글자크기로 나눔)*/
+    font-weight: bold;
+}
+
+/*오버시 글자색*/
+.gnb a:hover {
+    color: #f00;
+    text-decoration: overline;
+    /*윗줄*/
+}
+
+/*********** 1.5. 모바일 메뉴박스 ***********/
+/*전체부모박스*/
+.mognb {
+    background-color: #fff;
+    display: none;
+    /*처음에 안보임*/
+}
+
+/*모바일네비박스*/
+#mognb {
+    padding: 30px;
+}
+
+#mognb li {
+    width: 100%;
+    /*한줄에 메뉴하나*/
+    padding: 4px 0;
+}
+
+/*모바일네비 링크*/
+#mognb a {
+    color: #000;
+    font: 1.5rem/2em 'Play', sans-serif;
+}
+
+/*sns아이콘*/
+.snsico {
+    padding: 0 30px;
+}
+
+.snsico li {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    background: url(../images/ico.png) no-repeat;
+}
+
+.snsico li + li {
+    margin-left: 10px;
+}
+
+/*아이콘 스프라이트 셋팅*/
+.snsico li:nth-child(1) {
+    background-position: 0 0;
+}
+
+.snsico li:nth-child(2) {
+    background-position: -40px 0;
+}
+
+.snsico li:nth-child(3) {
+    background-position: -80px 0;
+}
+
+.snsico li:nth-child(4) {
+    background-position: -120px 0;
+}
+
+.snsico li:nth-child(5) {
+    background-position: -160px 0;
+}
+
+/*a링크설정*/
+.snsico li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/*매거진박스*/
+.magbox {
+    padding: 30px;
+    padding-bottom: 10px;
+}
+
+/*매거진이미지*/
+.mag {
+    width: 100%;
+    /*부모박스의 패딩 안쪽채움*/
+}
+
+/*매거진메시지*/
+.magbox figcaption {
+    font-size: 11px;
+    /*최소글자크기는 9px*/
+    line-height: 35px;
+    color: #555;
+}
+
+/*정기구독버튼*/
+.magbtn {
+    width: 100%;
+    background-color: #000;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    line-height: 40px;
+    font-weight: bold;
+}
+
+/*하단링크박스*/
+.moblink {
+    padding: 0 0 50px 30px;
+}
+
+.moblink li {
+    width: 100%;
+}
+
+.moblink a {
+    color: #333;
+    font-size: 15px;
+    line-height: 30px;
+}
+
+
+
+
+/******2.배너부분-비율박스********/
+#ban {
+    position: relative;
+    /*부모자격*/
+}
+
+/*배너슬라이드*/
+.slide,
+.slide > li {
+    position: absolute;
+    /*.slide의 부모? #ban
+    /.slide>li의부모?.slide*/
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/*슬라이드 리스트 공통*/
+.slide li {
+    opacity: 0;
+    /*안보*/
+    transition: opacity .8s ease-in-out;
+}
+
+/*선택슬라이드 class(on)*/
+.slide li.on {
+    opacity: 1;
+    /*보이게함*/
+}
+
+/*슬라이드개별셋팅*/
+.slide li:nth-child(1) {
+    background: url(../images/ban01.jpg) no-repeat center/cover;
+}
+
+.slide li:nth-child(2) {
+    background: url(../images/ban02.png) no-repeat center/cover;
+}
+
+.slide li:nth-child(3) {
+    background: url(../images/ban03.png) no-repeat center/cover;
+}
+
+.slide li:nth-child(4) {
+    background: url(../images/ban04.png) no-repeat center/cover;
+}
+
+/*3.컨텐츠부분-비율박스*/
+#cont {
+    /*비율유지박스는 부모박스에 높이값을 지정하지 않는다!*/
+}
+
+/*뉴스박스*/
+#news {
+    width: 100%;
+    height: 100%;
+}
+
+#news li {
+    position: relative;
+    /*부모자격*/
+    width: 100%;
+    height: 50%;
+    /*outline: 2px dotted red;*/
+}
+
+/*사이간격 미세조정*/
+#news li:first-child {
+    padding-bottom: 5px;
+}
+
+#news li:first-child .atit {
+    bottom: 5px;
+}
+
+#news li:last-child {
+    padding-top: 5px;
+}
+
+
+/*뉴스이미지*/
+#news img {
+    /*박스에 이미지 맞춤*/
+    width: 100%;
+    height: 100%;
+}
+
+/*기사제목박스*/
+.atit {
+    position: absolute;
+    /*부모? #news li*/
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /*크기를 설정해야 넘치는 글자 숨기기됨*/
+    height: 3.4rem;
+    /*높이값 주는이유: 여러줄 처리가 안되는 브라우저에서 
+    높이값을 설정하여 처리되도록 코딩함!*/
+
+    /*글자설정*/
+    color: #fff;
+    font: 1.2rem/1.5rem 'Sunflower', sans-serif;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.51);
+    /*반투명배경색: rgba(red,green,blue,투명도)*/
+
+    /*넘치는 글자 말줄임 표시하기*/
+    /*1.넘치는요소숨김*/
+    overflow: hidden;
+    /*2.줄바꿈방지-한줄일때만설정!*/
+    /*white-space: nowrap;*/
+    /*기본값 normal*/
+    /*3.말줄임표-입술에 손대며 말하지마!...*/
+    text-overflow: ellipsis;
+    /*위의 1,2,3은 한줄일때 말줄임 설정*/
+    /*여러줄일때는 줄바꿈방지를 하지 말아야함!*/
+    /*4.아래설정을 추가한다!*/
+    display: -webkit-box;
+    /*여러줄처리 display(크롬,사파리)*/
+    -webkit-line-clamp: 2;
+    /*처리할 줄 수를 셋팅*/
+    -webkit-box-orient: vertical;
+    /*처리할 진행방향 설정(세로방향)*/
+
+    /*영문단어 줄바꿈시 단어단위로 움직이므로 이것을 깨자!*/
+    word-break: break-all;
+
+}
+
+/*메뉴배너*/
+.mban {
+    /*파티션박스 패딩 재정의*/
+    padding: 5px;
+    /*#mban li의 패딩때문!*/
+}
+
+#mban {
+    width: 100%;
+    height: 100%;
+}
+
+#mban li {
+    width: 33.33%;
+    /*3등분*/
+    height: 50%;
+    padding: 5px;
+    /*공통패딩(각 박스와 외곽의 패딩합이 10px)*/
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    background-clip: content-box;
+    /*배경이미지를 보더와 패딩을 제외한 컨텐트에만 보이게함*/
+    /*outline: 2px dotted red;*/
+}
+
+/*각 li 배경설정*/
+#mban li:nth-child(1) {
+    background-image: url(../images/nars_3.jpg);
+}
+
+#mban li:nth-child(2) {
+    background-image: url(../images/jeong5.jpg);
+}
+
+#mban li:nth-child(3) {
+    background-image: url(../images/nars4.jpg);
+}
+
+#mban li:nth-child(4) {
+    background-image: url(../images/tommy.png);
+}
+
+/*마지막li는 width 100%*/
+#mban li:last-child {
+    width: 100%;
+}
+
+/*바로가기 박스 링크*/
+#mban li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/*a링크 글자*/
+#mban li a span {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block;
+    text-align: center;
+    color: #fff;
+    font: bold 2rem 'Play', sans-serif;
+    text-shadow: 1px 0 #000, -1px 0 #000,
+        0 1px #000, 0 -1px #000;
+    /*글자그림자로 글자테두리주기*/
+}
+
+
+/*4.하단부분*/
+#info {
+    position: relative;
+    /*부모자격*/
+    height: 275px;
+    background: #000 url(../images/vogue2.png) no-repeat center/313px;
+}
+
+/*주소박스*/
+#info address {
+    position: absolute;
+    bottom: 35px;
+    color: #fff;
+    font: .8rem 'Play';
+    width: 100%;
+    text-align: center;
+}
